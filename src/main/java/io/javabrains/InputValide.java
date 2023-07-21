@@ -17,8 +17,8 @@ public class InputValide {
 		return result;
 	}
 
-	public static int maxQuantityVerification(int totalPrice) {
-		if (totalPrice > 100) {
+	public static int maxQuantityVerification(int totalQuantity) {
+		if (totalQuantity > 100) {
 			return -6;
 		}
 		return 0;
