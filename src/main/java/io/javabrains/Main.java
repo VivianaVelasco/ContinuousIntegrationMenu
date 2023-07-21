@@ -20,7 +20,7 @@ public class Main {
 					System.out.println("Ecribe el numero de plato y las cantidades que deseas del plato ");
 					System.out.println("(Ejemplo: 2 7 ,o para seleccionar multiples platos y sus cantidades: 3 12 & 4 4 & 1 20):");
 					userOptionSelected = scan.next();
-					int respuesta = InputValide.validateQuantityMealsInputs(userOptionSelected);
+					int respuesta = MenuOrder.validate(userOptionSelected);
 					if(respuesta == -1) {
 						
 						System.out.println("Ya has seleccionado esta opcion de nuevo. \n");

@@ -44,7 +44,7 @@ public class TotalAmount {
 			String[] responseSplit = orderSplit.split("&");
 			int idMenuMealElection = Integer.parseInt(responseSplit[0]) - 1;
 			int userQElection = Integer.parseInt(responseSplit[1]);
-			int validRes = InputValide.validateQuantityMealsInputs(orderSplit);
+			int validRes = MenuOrder.validate(orderSplit);
 			this.seeAdvMessage(validRes);
 			if(validRes != -1 || validRes != -2) {
 				MenuOrder order = new MenuOrder(idMenuMealElection, userQElection);
@@ -169,7 +169,7 @@ public double discountsDone(double totalFinal, int numElectionMealsUser) {
 	}
 	
 	public void OrderCreatedChanged(String inputUser) {
-		int validationRes = InputValide.validateQuantityMealsInputs(inputUser);
+		int validationRes = MenuOrder.validate(inputUser);
 		if(validationRes != 1 || validationRes != 2) {
 			
 			String[] inputSplited = inputUser.split(" ");
