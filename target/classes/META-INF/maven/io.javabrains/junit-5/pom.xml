@@ -11,6 +11,31 @@
 	<junit.jupiter.versions>5.4.0</junit.jupiter.versions>
 </properties>
 
+<build>
+	<plugins>
+		<plugin>
+ 			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-site-plugin</artifactId>
+ 			<version>3.7.1</version>
+		</plugin>
+		 <plugin>
+			 <groupId>org.apache.maven.plugins</groupId>
+ 			<artifactId>maven-project-info-reports-plugin</artifactId>
+ 			<version>3.0.0</version>
+ 		</plugin>
+	</plugins>
+</build>
+<reporting>
+ 	<plugins>
+ 		<plugin>
+ 			<artifactId>maven-checkstyle-plugin</artifactId>
+			<configuration>
+ 				<configLocation>vivianavelasco_checks.xml</configLocation>
+			</configuration>
+		</plugin>
+ 	</plugins>
+</reporting>
+
 <dependencies>
 	<dependency>
 		<groupId>org.junit.jupiter</groupId>
@@ -22,9 +47,12 @@
 	<dependency>
 		<groupId>org.junit.jupiter</groupId>
  		<artifactId>junit-jupiter-api</artifactId>
-  		<version>ju${junit.jupiter.versions}</version>
+  		<version>${junit.jupiter.versions}</version>
   		<scope>test</scope>
+		
 	</dependency>
 </dependencies>
+
+
 </project>
 

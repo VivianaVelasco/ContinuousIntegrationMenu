@@ -17,15 +17,16 @@ public class Main {
 				
 				if(userInput == 1 ) {
 					mostrarMenu();
-					System.out.print("Write id dinner and amount: (Ex: 3 12 or 3 1 | 1 4 | 6 4 for select multiple dinner): ");
+					System.out.println("Ecribe el numero de plato y las cantidades que deseas del plato ");
+					System.out.println("(Ejemplo: 2 7 ,o para seleccionar multiples platos y sus cantidades: 3 12 & 4 4 & 1 20):");
 					userOptionSelected = scan.next();
 					int respuesta = InputValide.validateQuantityMealsInputs(userOptionSelected);
 					if(respuesta == -1) {
 						
-						System.out.println("You already selected this option. \n");
+						System.out.println("Ya has seleccionado esta opcion de nuevo. \n");
 					}
 					else if(respuesta == -2) {
-						System.out.println("Id dinner don't exists. Please write again. \n.");
+						System.out.println("El numero de plato no existe. Ingrese de nuevo. \n.");
 					}
 					else {
 						sum.addMealOrder(userOptionSelected);

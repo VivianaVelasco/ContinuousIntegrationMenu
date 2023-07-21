@@ -38,22 +38,22 @@ public class TotalAmount {
 	}
 
 	public int addMealOrder(String orders) {
-		String[] ordersSplitedStrings = orders.split("|");
-		for(int k = 0; k < ordersSplitedStrings.length; k++) {
-			String orderSplit = ordersSplitedStrings[k];
-			String[] resSplited = orderSplit.split("|");
-			int idMenuMealElection = Integer.parseInt(resSplited[0]) - 1;
-			int userQElection = Integer.parseInt(resSplited[1]);
+		String[] ordersSeparated = orders.split("&");
+		for(int x = 0; x < ordersSeparated.length; x++) {
+			String orderSplit = ordersSeparated[x];
+			String[] responseSplit = orderSplit.split("&");
+			int idMenuMealElection = Integer.parseInt(responseSplit[0]) - 1;
+			int userQElection = Integer.parseInt(responseSplit[1]);
 			int validRes = InputValide.validateQuantityMealsInputs(orderSplit);
 			this.seeAdvMessage(validRes);
 			if(validRes != -1 || validRes != -2) {
 				MenuOrder order = new MenuOrder(idMenuMealElection, userQElection);
-				int resExistedId = InputValide.existMealsMenu(validRes, userElectionOrder);
-				if(resExistedId != -4) {
+				int validIdres = InputValide.existMealsMenu(validRes, userElectionOrder);
+				if(validIdres != -4) {
 					
 					this.userElectionOrder.add(order);
 				}else {
-					this.seeAdvMessage(resExistedId);
+					this.seeAdvMessage(validIdres);
 					
 				}
 			}
@@ -88,31 +88,16 @@ public class TotalAmount {
 				break;
 			}
 		}
-		double finalCost = this.getTotalCost();
-		double finaCostWithDiscounts = this.discountsDone(finalCost, this.userElectionOrder.size());
+		double finalCost = this.obtainTotal();
+		double finaCostIncludeDiscount = this.discountsDone(finalCost, this.userElectionOrder.size());
+		
 		
 	}
 	
-	public double discountsDone(double totalFinal, int numElectionMealsUser) {
-	
-		
-		if( numElectionMealsUser > 5) {
-			totalFinal = totalFinal * 0.05;
-		}
-		if(numElectionMealsUser > 10) {
-			totalFinal = totalFinal * 0.10;
-		}
-		if(totalFinal > 50) {
-			totalFinal -= 10;
-		}
-		if(totalFinal > 50) {
-			totalFinal -= 10;
-		}
-		return totalFinal;
-	}
 	
 	
-	public int getTotalCost() {
+	
+	public int obtainTotal() {
 		int result = 0;
 		for(int m = 0; m < this.userElectionOrder.size(); m++ ) {
 			int idDinner = this.userElectionOrder.get(m).getIdMeal();
@@ -163,6 +148,24 @@ public class TotalAmount {
 			System.out.println("Ha excedido el numero de platos disponibles en el restaurante. "
 					+ "Porfavor corregir el numero de platos.\n");
 		}
+	}
+	
+public double discountsDone(double totalFinal, int numElectionMealsUser) {
+	
+		
+		if( numElectionMealsUser > 5) {
+			totalFinal = totalFinal * 0.05;
+		}
+		if(numElectionMealsUser > 10) {
+			totalFinal = totalFinal * 0.10;
+		}
+		if(totalFinal > 50) {
+			totalFinal -= 10;
+		}
+		if(totalFinal > 50) {
+			totalFinal -= 10;
+		}
+		return totalFinal;
 	}
 	
 	public void OrderCreatedChanged(String inputUser) {
