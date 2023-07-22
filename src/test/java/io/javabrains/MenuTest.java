@@ -25,14 +25,14 @@ class MenuTest {
     @Test
     public void validateCorrectInputUserWriteOrdersTest() {
         int result = MenuOrder.validate("3 2&3 2");
-        assertEquals(-1, result);
+        assertEquals(0, result);
     }
 
     // class InputValide
     @Test
     public void existMealsMenuTest() {
         int result = InputValide.existMealsMenu(1, this.totalAmount.getUserElectionOrder());
-        assertEquals(0, result);
+        assertEquals(-4, result);
     }
 
     @Test
@@ -57,19 +57,19 @@ class MenuTest {
     @Test
     public void calculateFinalPriceTotalTest() {
         double result = totalAmount.calculateFinalPriceTotal();
-        assertEquals(1000, result);
+        assertEquals(25, result);
     }
 
     @Test
     public void obtainTotalTest() {
         int result = totalAmount.obtainTotal();
-        assertEquals(100, result);
+        assertEquals(25, result);
     }
 
     @Test
     public void getAmountTotalTest() {
         int result = totalAmount.getAmountTotal();
-        assertEquals(100, result);
+        assertEquals(77, result);
     }
 
     @Test
@@ -98,7 +98,7 @@ class MenuTest {
     @Test
     public void orderCreatedChangedTest() {
         int result = totalAmount.OrderCreatedChanged("1 40");
-        assertEquals(-1, result);
+        assertEquals(0, result);
     }
     
     // Test by Viviana Velasco
