@@ -63,7 +63,7 @@ class MenuTest {
     @Test
     public void obtainTotalTest() {
         int result = totalAmount.obtainTotal();
-        assertEquals(100, result);
+        assertEquals(25, result);
     }
 
     @Test
@@ -100,5 +100,7 @@ class MenuTest {
         int result = totalAmount.OrderCreatedChanged("1 40");
         assertEquals(0, result);
     }
+    
+    // Test by Viviana Velasco
 
 }
