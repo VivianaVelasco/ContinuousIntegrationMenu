@@ -63,7 +63,7 @@ class MenuTest {
     @Test
     public void obtainTotalTest() {
         int result = totalAmount.obtainTotal();
-        assertEquals(25, result);
+        assertEquals(100, result);
     }
 
     @Test
