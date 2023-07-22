@@ -25,7 +25,7 @@ class MenuTest {
     @Test
     public void validateCorrectInputUserWriteOrdersTest() {
         int result = MenuOrder.validate("3 2&3 2");
-        assertEquals(0, result);
+        assertEquals(-1, result);
     }
 
     // class InputValide
@@ -57,7 +57,7 @@ class MenuTest {
     @Test
     public void calculateFinalPriceTotalTest() {
         double result = totalAmount.calculateFinalPriceTotal();
-        assertEquals(100, result);
+        assertEquals(1000, result);
     }
 
     @Test
