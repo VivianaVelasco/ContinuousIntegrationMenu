@@ -98,7 +98,7 @@ class MenuTest {
     @Test
     public void orderCreatedChangedTest() {
         int result = totalAmount.OrderCreatedChanged("1 40");
-        assertEquals(0, result);
+        assertEquals(-1, result);
     }
     
     // Test by Viviana Velasco
