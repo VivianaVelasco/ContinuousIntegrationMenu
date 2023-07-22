@@ -3,6 +3,7 @@ package io.javabrains;
 import java.util.Arrays;
 import java.util.ArrayList;
 
+
 public class TotalAmount {
 
 	private ArrayList<MenuOrder> userElectionOrder;
@@ -25,7 +26,7 @@ public class TotalAmount {
 		return userElectionOrder;
 	}
 
-	public void setuserElectionOrder(ArrayList<MenuOrder> userElectionOrder) {
+	public void setUserElectionOrder(ArrayList<MenuOrder> userElectionOrder) {
 		this.userElectionOrder = userElectionOrder;
 	}
 
@@ -40,14 +41,13 @@ public class TotalAmount {
 
 	public int addMealOrder(String orders) {
 		if (!orders.contains("&"))
-			orders.concat("&");
+			orders += "&";
 		String[] ordersSeparated = orders.split("&");
-		for (int x = 0; x < ordersSeparated.length; x++) {
-			String orderSplit = ordersSeparated[x];
-			String[] responseSplit = orderSplit.split("&");
+		for (String orderSingle: ordersSeparated) {
+			String[] responseSplit = orderSingle.split(" ");
 			int idMenuMealElection = Integer.parseInt(responseSplit[0]) - 1;
 			int userQElection = Integer.parseInt(responseSplit[1]);
-			int validRes = MenuOrder.validate(orderSplit);
+			int validRes = MenuOrder.validate(orderSingle);
 			this.seeAdvMessage(validRes);
 			if (validRes != -1 || validRes != -2) {
 				MenuOrder order = new MenuOrder(idMenuMealElection, userQElection);
@@ -56,7 +56,8 @@ public class TotalAmount {
 					this.userElectionOrder.add(order);
 				else
 					this.seeAdvMessage(validIdres);
-			}
+			} else
+				return -1;
 		}
 		return 0;
 
@@ -88,7 +89,6 @@ public class TotalAmount {
 		double finalCost = this.obtainTotal();
 		double finaCostIncludeDiscount = this.discountsDone(finalCost, this.userElectionOrder.size());
 		return finaCostIncludeDiscount;
-
 	}
 
 	public int obtainTotal() {
@@ -138,17 +138,17 @@ public class TotalAmount {
 
 	public double discountsDone(double totalFinal, int numElectionMealsUser) {
 		if (numElectionMealsUser > 5)
-			totalFinal = totalFinal * 0.05;
+			totalFinal += totalFinal * 0.05;
 		if (numElectionMealsUser > 10)
-			totalFinal = totalFinal * 0.10;
+			totalFinal += totalFinal * 0.10;
 		if (totalFinal > 50)
 			totalFinal -= 10;
-		if (totalFinal > 50)
-			totalFinal -= 10;
+		if (totalFinal > 100)
+			totalFinal -= 25;
 		return totalFinal;
 	}
 
-	public void OrderCreatedChanged(String inputUser) {
+	public int OrderCreatedChanged(String inputUser) {
 		int validationRes = MenuOrder.validate(inputUser);
 		if (validationRes != 1 || validationRes != 2) {
 			String[] inputSplited = inputUser.split(" ");
@@ -157,8 +157,10 @@ public class TotalAmount {
 			MenuOrder order = this.userElectionOrder.get(userMealIdElection);
 			order.setQuantity(quantityMeals);
 			System.out.println("ID" + userMealIdElection + "El menu se ha actualizado. \n");
+			return 0;
 		} else {
 			this.seeAdvMessage(validationRes);
+			return -1;
 		}
 	}
 
